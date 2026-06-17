@@ -2,6 +2,7 @@ package com.example.mobpro3.ui.screen
 
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -114,7 +115,17 @@ fun MainScreen() {
 
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { showCreateDialog = true }
+                onClick = {
+                    if (user.token.isEmpty()) {
+                        Toast.makeText(
+                            context,
+                            "Harus login",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        showCreateDialog = true
+                    }
+                }
             ) {
                 Icon(Icons.Default.Add, contentDescription = "Tambah")
             }
@@ -187,10 +198,6 @@ fun ScreenContent(
     val data by viewModel.data.collectAsState()
     val status by viewModel.status.collectAsState()
 
-    LaunchedEffect(Unit) {
-        viewModel.retrieveData()
-    }
-
     when (status) {
 
         ApiStatus.LOADING -> {
@@ -208,7 +215,7 @@ fun ScreenContent(
                     .fillMaxSize()
                     .padding(8.dp)
             ) {
-                items(data) { item ->
+                items(data.data) { item ->
 
                     ReportItem(
                         item = item,

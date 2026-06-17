@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.android.image.cropper)
     implementation(libs.androidx.compose.material.icons.extended)
+    implementation(libs.androidx.room.ktx)
 
     implementation(libs.retrofit)
     implementation(libs.converter.moshi)

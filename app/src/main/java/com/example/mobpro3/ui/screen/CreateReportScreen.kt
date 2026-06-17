@@ -192,15 +192,6 @@ fun CreateReportDialog(
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                if (viewModel.status == ApiStatus.LOADING) {
-                    Spacer(modifier = Modifier.height(12.dp))
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        CircularProgressIndicator()
-                    }
-                }
 
                 if (viewModel.status == ApiStatus.FAILED) {
 
